@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>动态页</title>
+    <!--<script th:src="@{/static/js/myJs.js}"></script>-->
+</head>
+<body>
+    <h1 th:text="${msg}">动态页</h1>
+
+    <div>
+        用户姓名：<input th:id="${myUser.id}" th:name="${myUser.name}" th:value="${myUser.name}"><br>
+        用户年龄：<input th:value="${myUser.age}"><br>
+        用户生日：<input th:value="${myUser.birthday}"><br>
+        用户生日：<input th:value="${#dates.format(myUser.birthday,'yyyy-MM-dd HH:mm:ss')}"><br>
+    </div>
+    <br>
+    <div th:object="${myUser}">
+        用户姓名：<input th:id="*{id}" th:name="*{name}" th:value="*{name}"><br>
+        用户年龄：<input th:value="*{age}"><br>
+        用户生日：<input th:value="*{birthday}"><br>
+        用户生日：<input th:value="*{#dates.format(birthday,'yyyy-MM-dd HH:mm:ss')}"><br>
+    </div>
+    <br>
+    text与utext:<br>
+    <span th:text="${myUser.desc}">abc</span>
+    <br>
+    <span th:utext="${myUser.desc}">abc</span>
+    <br>
+    URL:<br>
+    <a href="" th:href="@{http://www.imooc.com}">网站地址</a>
+
+    <br>
+
+    <form th:action="@{/th/postForm}" th:object="${myUser}" method="post" th:method="post">
+        <input type="text" th:field="*{name}">
+        <input type="submit" value="submit"/>
+    </form>
+    <br>
+    <div th:if="${myUser.age} == 19">19岁的天空</div>
+    <div th:if="${myUser.age} gt 19">大于19</div>
+    <div th:if="${myUser.age} lt 19">小于19</div>
+    <div th:if="${myUser.age} ge 19">大于等于19</div>
+    <div th:if="${myUser.age} le 19">小于等于19</div>
+
+    <br>
+    <select>
+        <option th:selected="${myUser.name eq 'lee'}">lee</option>
+        <option th:selected="${myUser.name eq 'blue'}">blue</option>
+    </select>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>desc</th>
+        </tr>
+        <tr th:each="person:${userList}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
+            <td th:text="${person.age gt 20}? 你老了:你还年轻"></td>
+        </tr>
+    </table>
+    <br>
+    <div th:switch="${myUser.name}">
+        <p th:case="lee">lee</p>
+        <p th:case="#{roles.manager}">普通管理员</p>
+        <p th:case="#{roles.superAdmin}">超级管理员</p>
+        <p th:case="*">其他用户</p>
+    </div>
+</body>
+</html>

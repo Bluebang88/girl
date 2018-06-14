@@ -4,7 +4,7 @@ import com.example.girl.domain.Girl;
 import com.example.girl.domain.Result;
 import com.example.girl.properties.GirlProperties;
 import com.example.girl.repository.GirlRepository;
-import com.example.girl.service.GirlServiceImpl;
+import com.example.girl.serviceImpl.GirlServiceImpl;
 import com.example.girl.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

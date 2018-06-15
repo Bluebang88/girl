@@ -10,6 +10,7 @@ import com.example.girl.enums.ResultEnum;
  * 0：表示成功
  * 1：表示错误，错误信心在msg中，
  * 2：表示bean的验证错误，不管多少个错误都以map的形式返回
+ * 3：表示被拦截
  */
 public class ResultUtil {
 
